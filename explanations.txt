@@ -1,38 +1,49 @@
 Question 1
-I think the efficiency is O(n) where n is the number of characters in a string
-because the function only needs to iterate through one list that is created 
-by a string.  It goes through the list and check if it contains the letters of
-the other string.  n will always be the length of the shortest string.  I decided to 
-make the two string into lists because I figured it would be easier to iterate 
-through and the order could save on search time.  I did not create an new variables
-I justed stored the new data into the starting variables so its space efficient.
+I think the efficiency is O(n^2) where n is the number of characters in string t.
+We go through t to see if it is in S.  Then if it is we are creating a list of the indexes
+of s in which the characters in t are located.  This creates a list the length
+of t at a maximum, becuase if not all the characters of string t are in s then the 
+function will return false and end.  After this we are iterating through indexes, which
+is the length of t.  Thus we have to iterate through n two times.  It is also O(nm)
+while n still equals the length of string t and m is the length of the list of 
+indexes, but because these two are going to be the same length I found it to be fine
+having them to both be n.  As for the space efficiency I think it is O(n) becuase
+each time the function will be creating a list that is the length of t at a maximum.
+
 
 Question 2
-For this function you first need to iterate throught the string to see if
+For this function you first need to iterate through the string to see if
 some letters match.  Then it would go through the string again to check
-how long the palindrome is.  O(n^2) would be the time efficency as well as 
-the max time efficency.  I do not alter the initial variable or build a 
+how long the palindrome is.  O(n^2) would be the time efficiency as well as 
+the max time efficiency.  I do not alter the initial variable or build a 
 palindrome string in a variable, I just kept track of the start and end of
 the palindrome and spliced the string at the end.  n is the length of the 
-string
+string.   Space efficiency is constant O(1)
 
 Question 3
 The efficiency would be O(2n + v) The function goes through the edges twice.
-n would be the edges and v would be the verties because the function iterates 
+n would be the edges and v would be the vertices because the function iterates 
 over the vertices to build list of vertices and edges.  Sorting the edges by 
 weight which helps find the shortest length.  Then the vertices are put back into
-the edge list in order of the least edge weight to most.
+the edge list in order of the least edge weight to most. 
 
 Question 4
 http://stackoverflow.com/questions/2307283/what-does-olog-n-mean-exactly
-The efficiency O(log(n)) because to find the target we do not need to go through the whole binary tree.  
+Is the efficiency O(mn) or something like that becuase I have to go through the length
+of the matrix each time with returnChildren(). Then if the target is still not found 
+then the function would have to move to a new row in the matrix at a different height.
+So m would be the height of the matrix, but we do not need to iterate through the whole matrix each time
+making O(mn) the max?  n would have to be length of the rows which have to be iterated through to find the
+children of each parent.    
 The first two nodes can be the target nodes which would lead us to the answer of the least common
 ancestor.  The program starts with the root and finds it children.  Different cases will result in the 
-program returing the ancestor as explained in the code.  
+program returning the ancestor as explained in the code.  The space efficiency is O(1) which is constant.
+
+
 
 Question 5 
-The efficiency is O(2n) n being the number of nodes in the list.  The first iteration is through the linked
-list to find the length of list and the second time is back through the list to find the mth node.  I wanted 
-to find the length of the list so I know if the mth position is in the list and to help iterate through the
-list.  The iteration starts at the end of the list so I would only need to count m number of times to get 
-to the target node.  
+The efficiency is O(n) n being the number of nodes in the list.  The first iteration is through the linked
+list to find the length of list.  I wanted to find the length of the list so I know if the mth position is in the 
+list and to help iterate through the list.  The iteration starts at the end of the list so I would only need 
+to count m number of times to get to the target node.  This is also constant in space efficiency.   
+ 
