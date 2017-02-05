@@ -1,21 +1,22 @@
 from operator import itemgetter # for question 3
 
 
+
 def question1(s, t):
     if s == '' or t == '' or s == None or t == None:
         return False
-    s = (sorted(s)) # sort string alphabetical order and make them lists
-    t = (sorted(t))
-    if len(s) >= len(t): # find out which string is longer so I can have the smaller list iterate over the long one
-        for letter in t: # iterate over small list
-            if letter not in s: # if any of the letters are not in larger list then it is not any sort of anagram and I return false
-                return False
     else:
-        for letter in s:    # same as code above just with the t list being longer
-            if letter not in t:
+        indexes = [] # hold the index in string s where the characters in string t are found
+        for i in xrange(0,len(t)): # iterate through t 
+            if t[i] in s: # check if it is in s
+                indexes.append(s.index(t[i])) # if it is then add the index to the list
+        indexes.sort(key=int) # sorted in numerical order
+        if len(indexes) == len(t): # check if all the characters of t were found in string s
+            for i in xrange(0, len(indexes)):  # iterate through the index list
+                if indexes[i] == min(indexes) and indexes[i] + 1 in indexes: # check if the indexes are in order in string s 
+                    return True # if they are then it can be an anagram
                 return False
-        
-    return True # is anagram
+        return False
 
 
 def question2(a):
@@ -98,7 +99,6 @@ def question4(T, r, n1, n2):
     if inputCheck(T, r, n1, n2) == False:
         return None
 
-
     current_parent = r
     previous_parent = r
     child_left, child_right = returnChildren(T, current_parent)
@@ -117,7 +117,6 @@ def question4(T, r, n1, n2):
             previous_parent = current_parent
             current_parent = child_right
             child_left, child_right = returnChildren(T, current_parent) # find children
-
 
 def inputCheck(T, r, n1, n2):
     if T is None or T == []: # need a matrix
@@ -195,12 +194,32 @@ class LinkedList(object):
 
 
 
-print(question1('udacity','ud'))
+print(question1('udacity','ticy'))
+print("expect true")
 # True
+print(question1('udacity','ac'))
+print("expect true")
+# True
+print(question1('udacity','uc'))
+print("expect false")
+# False
 print(question1('udacity',''))
+print("expect false")
 # False
-print(question1('udacity','uz'))
+print(question1('udacity','uy'))
+print("expect false")
 # False
+print(question1('aca', 'aa'))
+print("expect false")
+# False
+print(question1('aca', 'ac'))
+print("expect true")
+# True
+print(question1('aca', 'z'))
+print("expect false")
+# False
+print ("")
+
 
 
 print(question2("alracecaral"))
@@ -278,6 +297,7 @@ print question5(ll, 2)
 
 print question5(ll, None)
 # None
+
 
 
 
